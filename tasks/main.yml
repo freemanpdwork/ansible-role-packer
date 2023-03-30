@@ -1,0 +1,22 @@
+---
+# tasks file for ansible-role-packer
+#
+
+- name: Install the latest version of yum-utils
+  yum:
+    name: yum-utils
+    state: latest
+
+- name: Add Hashicorp repository file
+  ansible.builtin.yum_repository:
+    name: hashicorp.repo
+    description: Hashicorp YUM repo
+    file: hashicorp.repo
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    gpgcheck: no
+
+- name: Install packer
+  yum:
+    name: packer
+    state: latest          
+      
